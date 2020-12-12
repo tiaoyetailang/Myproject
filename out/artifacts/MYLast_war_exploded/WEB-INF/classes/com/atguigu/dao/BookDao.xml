@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.atguigu.dao.BookDao">
+
+<select id="getALL" resultType="com.atguigu.pojo.Book">
+    select * from t_book
+
+</select>
+
+    <select id="getbyId" resultType="com.atguigu.pojo.Book">
+
+        select * from t_book where id=#{id}
+
+    </select>
+
+<update id="update">
+UPDATE  t_book t SET
+t.`name`=#{book.name},t.`price`=#{book.price},t.`author`=#{book.author},t.`sales`=#{book.sales},t.`stock`=#{book.stock}
+ WHERE id=#{book.id}
+
+
+
+</update>
+
+    <insert id="insert">
+INSERT INTO t_book VALUES(NULL,#{book.name},#{book.price},#{book.author},#{book.sales},#{book.stock},#{book.imgPath})
+
+    </insert>
+
+
+    <delete id="delete">
+        delete  from t_book where id=#{id}
+
+    </delete>
+
+    <select id="getByprice" resultType="com.atguigu.pojo.Book">
+
+        select * from t_book where price between #{min} and #{max}
+
+    </select>
+
+</mapper>
